@@ -1,5 +1,3 @@
-import GridShow from "../components/GridShow";
-
 interface IGirdModel {
   firstName: string;
 
@@ -62,5 +60,4 @@ interface IGirdModel {
   hobbies: string;
 }
 
-Object.seal(GridShow);
 export default IGirdModel;

@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import _ from "lodash";
 import { GridContext } from "../store/GridContext";
 import "./GridShow.css";
 import IGirdModel from "../model/IGridModel";
-import * as constants from '../util/constants'
+import * as constants from "../util/constants";
 
 const GridShow: React.FC = () => {
   const gridsCtx = useContext(GridContext);
@@ -17,19 +17,19 @@ const GridShow: React.FC = () => {
   //     .value();
 
   //   const totalPage = gridsCtx.items.length / perPage + 1;
-  
+
   const pagingData: IGirdModel[] = gridsCtx.items;
 
   function handleKeyDown(event: React.KeyboardEvent) {
     if (event.key === constants.ARROW_UP) {
-      event.preventDefault(); // prevent default behavior of scrolling
+      event.preventDefault();
       gridsCtx.setKeyDown();
     }
   }
 
   function handleKeyUp(event: React.KeyboardEvent) {
     if (event.key === constants.ARROW_DOWN) {
-      event.preventDefault(); // prevent default behavior of scrolling
+      event.preventDefault();
       gridsCtx.setKeyUp();
     }
   }
@@ -57,9 +57,11 @@ const GridShow: React.FC = () => {
     );
   });
 
-  const renderedHeaderRows = Object.keys(gridsCtx.items[0] || {}).map((key) => {
-    return <th key={key}>{key}</th>;
-  });
+  const renderedHeaderRows = useMemo(() => {
+    return Object.keys(gridsCtx.items[0] || {}).map((key) => {
+      return <th key={key}>{key}</th>;
+    });
+  }, []);
 
   return (
     <div>
