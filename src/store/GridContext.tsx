@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import IGirdModel from "../model/IGridModel";
-import * as constants from '../util/constants'
+import * as constants from "../util/constants";
 
 type GridContextObj = {
   highlightedRowIndex: number | null;
@@ -63,7 +63,8 @@ const GridContextProvider: React.FC<{ children?: React.ReactNode }> = (
 
   const setKeyUp = () => {
     const index = highlightedRowIndex ?? 0; // get current selected row, or default to first row
-    const nextIndex = index < constants.PER_PAGE - 1 ? index + 1 : constants.PER_PAGE - 1; // calculate index of previous row
+    const nextIndex =
+      index < constants.PER_PAGE - 1 ? index + 1 : constants.PER_PAGE - 1; // calculate index of previous row
     setHighlightedRowIndex(nextIndex); // update selected row state
   };
 
