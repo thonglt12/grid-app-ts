@@ -2,23 +2,16 @@ import React, { useContext, useMemo } from "react";
 import _ from "lodash";
 import { GridContext } from "../store/GridContext";
 import "./GridShow.css";
-import IGirdModel from "../model/IGridModel";
 import * as constants from "../util/constants";
 
 const GridShow: React.FC = () => {
   const gridsCtx = useContext(GridContext);
-
-  //   const perPage: number = 10;
 
   //   const dropItem: number = (gridsCtx.page - 1) * perPage;
   //   const pagingData: any = _(gridsCtx.items)
   //     .drop(dropItem)
   //     .take(perPage)
   //     .value();
-
-  //   const totalPage = gridsCtx.items.length / perPage + 1;
-
-  const pagingData: IGirdModel[] = gridsCtx.items;
 
   function handleKeyDown(event: React.KeyboardEvent) {
     if (event.key === constants.ARROW_UP) {
@@ -34,12 +27,12 @@ const GridShow: React.FC = () => {
     }
   }
 
-  const renderedRows = pagingData.map((data: any, index: number) => {
+  const renderedRows = gridsCtx.items.map((data: any, index: number) => {
     return (
       <tr
         key={index}
         className={
-          index === gridsCtx.highlightedRowIndex ? "highlightedRow" : ""
+          index === gridsCtx.highlightedRowIndex ? "highlighted-row" : ""
         }
         onMouseEnter={() => gridsCtx.setMouseEnter(index)}
         onMouseLeave={() => gridsCtx.setMouseLeave()}
@@ -58,8 +51,8 @@ const GridShow: React.FC = () => {
   });
 
   const renderedHeaderRows = useMemo(() => {
-    return Object.keys(gridsCtx.items[0] || {}).map((key) => {
-      return <th key={key}>{key}</th>;
+    return constants.GRID_HEADER.map((headerValue: string, index: number) => {
+      return <th key={index}>{headerValue}</th>;
     });
   }, []);
 
@@ -73,7 +66,7 @@ const GridShow: React.FC = () => {
       >
         <thead>
           <tr>
-            <th scope="col">#</th>
+            <th scope="col">No.</th>
             {renderedHeaderRows}
           </tr>
         </thead>
@@ -81,7 +74,7 @@ const GridShow: React.FC = () => {
       </table>
 
       {/* paging */}
-      <nav aria-label="Page navigation example">
+      <nav>
         <ul className="pagination">
           <button
             className="page-item"

@@ -1,11 +1,10 @@
-import React from 'react';
-import GridShow from './components/GridShow';
-import GridContextProvider from './store/GridContext';
+import GridShow from "./components/GridShow";
+import GridContextProvider from "./store/GridContext";
 
 function App() {
   return (
     <GridContextProvider>
-      <GridShow/>
+      <GridShow />
     </GridContextProvider>
   );
 }

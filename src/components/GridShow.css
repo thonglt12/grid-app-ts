@@ -1,10 +1,15 @@
-.highlightedRow {
-    background-color: yellowgreen;
+.highlighted-row {
+  background-color: yellowgreen;
 }
 
 td {
-    width: 200px;
-    overflow: hidden;
-    white-space: nowrap; 
-    text-overflow: ellipsis;
+  width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+th {
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
